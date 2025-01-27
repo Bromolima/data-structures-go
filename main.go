@@ -6,10 +6,11 @@ import (
 
 func main() {
 	l := &dataStructures.List{}
-	l.Add(7)
-	l.Add(2)
-	l.Add(1)
-	l.Add(6)
-	l.Add(4)
+	slice := []int{3, 5, 7, 8, 9, 4, 2, 10, 18, 9}
+	for _, number := range slice {
+		l.Add(number)
+	}
+	l.Print()
+	l.QuickSort()
 	l.Print()
 }
