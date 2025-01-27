@@ -2,12 +2,6 @@ package dataStructures
 
 import "fmt"
 
-type Node struct {
-	val  int
-	next *Node
-	prev *Node
-}
-
 type List struct {
 	head *Node
 	tail *Node
@@ -15,7 +9,7 @@ type List struct {
 }
 
 func (l *List) Insert(val int) {
-	newNode := &Node{val: val}
+	newNode := &Node{val: val, next: nil, prev: nil}
 
 	if l.head == nil {
 		l.head = newNode
