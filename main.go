@@ -13,4 +13,7 @@ func main() {
 	l.Print()
 	l.QuickSort()
 	l.Print()
+	l.DeleteFromStart()
+	l.QuickSort()
+	l.Print()
 }
