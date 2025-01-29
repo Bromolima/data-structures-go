@@ -5,3 +5,8 @@ type Node struct {
 	next *Node
 	prev *Node
 }
+
+type SimpleNode struct {
+	val  int
+	next *SimpleNode
+}

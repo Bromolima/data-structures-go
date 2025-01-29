@@ -11,8 +11,6 @@ func main() {
 		l.Add(number)
 	}
 	l.Print()
-	l.QuickSort()
-	l.Print()
 	l.DeleteFromStart()
 	l.QuickSort()
 	l.Print()

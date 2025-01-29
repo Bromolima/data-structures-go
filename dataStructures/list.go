@@ -104,68 +104,70 @@ func (l *List) DeleteFromEnd() error {
 }
 
 func (l *List) Print() {
-	aux := l.head
 	fmt.Print("[")
-	for aux != nil {
+	for aux := l.head; aux != nil; aux = aux.next {
 		if aux.next == nil {
 			fmt.Print(aux.val)
 		} else {
 			fmt.Print(aux.val, " ")
 		}
-		aux = aux.next
 	}
 	fmt.Println("]")
 }
 
 func (l *List) PrintInverted() {
-	aux := l.tail
-	for aux != nil {
-		fmt.Print(aux.val, " ")
-		aux = aux.prev
+	fmt.Print("[")
+	for aux := l.tail; aux != nil; aux = aux.prev {
+		if aux.prev == nil {
+			fmt.Print(aux.val)
+		} else {
+			fmt.Print(aux.val, " ")
+		}
 	}
+	fmt.Println("]")
 }
 
 func (l *List) QuickSort() error {
-    if l.head == nil || l.tail == nil || l.len == 0 {
-        return fmt.Errorf("list is empty")
-    }
-    quickSort(l.head, l.tail)
-    return nil
+	if l.head == nil || l.tail == nil || l.len == 0 {
+		return fmt.Errorf("list is empty")
+	}
+	quickSort(l.head, l.tail)
+	return nil
 }
 
 func partition(start, end *Node) *Node {
-    if start == nil || end == nil {
-        return nil
-    }
-    pivot := end
-    i := start.prev
+	if start == nil || end == nil {
+		return nil
+	}
+	pivot := end
+	i := start.prev
 
-    for j := start; j != end && j != nil; j = j.next {
-        if j.val <= pivot.val {
-            if i == nil {
-                i = start
-            } else {
-                i = i.next
-            }
-            i.val, j.val = j.val, i.val
-        }
-    }
+	for j := start; j != end && j != nil; j = j.next {
+		if j.val <= pivot.val {
+			if i == nil {
+				i = start
+			} else {
+				i = i.next
+			}
+			i.val, j.val = j.val, i.val
+		}
+	}
 
-    if i == nil {
-        i = start
-    } else {
-        i = i.next
-    }
+	if i == nil {
+		i = start
+	} else {
+		i = i.next
+	}
 
-    i.val, pivot.val = pivot.val, i.val
-    return i
+	i.val, pivot.val = pivot.val, i.val
+	return i
 }
 
 func quickSort(start, end *Node) {
-    if start == nil || end == nil || start == end || end.next == start {
-        return
-    }
-    pivot := partition(start, end)
-    quickSort(start, pivot.prev)
-    quickSort(pivot.next, end)
+	if start == nil || end == nil || start == end || end.next == start {
+		return
+	}
+	pivot := partition(start, end)
+	quickSort(start, pivot.prev)
+	quickSort(pivot.next, end)
 }
