@@ -24,3 +24,10 @@ func (s *Stack) Pop() error {
 	}
 	return nil
 }
+
+func (s *Stack) Print() {
+	for aux := s.head; aux != nil; aux = aux.next {
+		fmt.Print(aux.val, " ")
+	}
+	fmt.Println()
+}

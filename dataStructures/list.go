@@ -16,10 +16,9 @@ func (l *List) Insert(val int) {
 		l.tail = newNode
 		l.len = 1
 	} else {
-		aux := l.head
+		l.head.prev = newNode
+		newNode.next = l.head
 		l.head = newNode
-		aux.prev = newNode
-		newNode.next = aux
 		l.len++
 	}
 }
@@ -32,10 +31,9 @@ func (l *List) Add(val int) {
 		l.tail = newNode
 		l.len = 1
 	} else {
-		aux := l.tail
+		l.tail.next = newNode
+		newNode.prev = l.tail
 		l.tail = newNode
-		aux.next = newNode
-		newNode.prev = aux
 		l.len++
 	}
 }
