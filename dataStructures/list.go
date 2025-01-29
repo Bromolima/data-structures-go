@@ -169,3 +169,47 @@ func quickSort(start, end *Node) {
 	quickSort(start, pivot.prev)
 	quickSort(pivot.next, end)
 }
+
+func (l *List) Search(val int) (*Node, error) {
+	if l.head == nil {
+		return nil, fmt.Errorf("list is empty")
+	}
+
+	for aux := l.head; aux != nil; aux = aux.next {
+		if aux.val == val {
+			return aux, nil
+		}
+	}
+
+	return nil, fmt.Errorf("value not found")
+}
+
+func (l *List) SearchInPosition(pos int) (*Node, error) {
+	if l.head == nil {
+		return nil, fmt.Errorf("list is empty")
+	}
+
+	if pos >= l.len || pos < 0 {
+		return nil, fmt.Errorf("invalid position")
+	}
+
+	aux := l.head
+	for i := 0; i < l.len; i++ {
+		if i == pos {
+			return aux, nil
+		}
+		aux = aux.next
+	}
+
+	return nil, fmt.Errorf("could not find node")
+}
+
+func (l *List) IsInList(val int) bool {
+	for aux := l.head; aux != nil; aux = aux.next {
+		if aux.val == val {
+			return true
+		}
+	}
+
+	return false
+}
